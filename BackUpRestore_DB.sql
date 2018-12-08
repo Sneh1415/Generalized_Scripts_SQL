@@ -2,33 +2,26 @@
 USE master;
 GO
 BACKUP DATABASE [DB_NAME]
-TO DISK = 'C:\Backup\TestBackup\DB_NAME_04092018.Bak'
+TO DISK = 'C:\Backup\TestBackup\DB_NAME_Timestamp.Bak'
    WITH FORMAT,
-      MEDIANAME = 'Z_SQLServerBackups',
+      MEDIANAME = 'SQLServerBackups',
       NAME = 'Full Backup of DB_NAME';
 GO
 
 
-/*ALTER DATABASE [Swastha_Dev_07012018]
+ALTER DATABASE [DB_NAME]
 SET SINGLE_USER
 WITH ROLLBACK IMMEDIATE;
 GO
 
-DROP DATABASE [Swastha_Dev_07012018];
+DROP DATABASE [DB_NAME];
 GO
-*/
+
 
 USE master;
 
-RESTORE DATABASE [Sarvodaya_S19_01092018]
-FROM disk = 'C:\Backup\TestBackup\Sarvodaya_S19_01092018.Bak'
-WITH MOVE 'Swastha' TO 'C:\Backup\TestBackup\Sarvodaya_S19_01092018.mdf',
-MOVE 'Swastha_log' TO 'C:\Backup\TestBackup\Sarvodaya_S19_01092018.ldf'; 
-
-USE master;
-
-RESTORE DATABASE Sarvodaya_13082018
-FROM disk = 'C:\Backup\TestBackup\Sarvodaya_13082018.Bak'
-WITH MOVE 'Swastha' TO 'C:\Backup\TestBackup\Sarvodaya_13082018.mdf',
-MOVE 'Swastha_log' TO 'C:\Backup\TestBackup\Sarvodaya_13082018.ldf'; 
+RESTORE DATABASE [DB_NAME_Timestamp]
+FROM disk = 'C:\Backup\TestBackup\DB_NAME_Timestamp.Bak'
+WITH MOVE 'MDFLogicalName' TO 'C:\Backup\TestBackup\DB_NAME_Timestamp.mdf',
+MOVE 'LDFLogicalName_log' TO 'C:\Backup\TestBackup\DB_NAME_Timestamp.ldf'; 
 
